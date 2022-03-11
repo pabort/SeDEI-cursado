@@ -60,6 +60,7 @@ source("R/plot_inscriptos_carrera.R")
 
 source("R/plot_inscriptos_carrera.R")
 source("R/plot_regular_carrera.R")
+source("R/plot_regular_carrera_2.R")
 source("R/plot_partic_actuacion_carr.R")
 ```
 
@@ -259,6 +260,87 @@ class: inverse, center, middle
 
 # Resultados de cursada por carrera
 
+---
+
+### Resultados de la cursada por carrera
+#### **Primer semestre**
+
+.panelset[
+.panel[.panel-name[2019]
+
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_reg_carr2[['2019-11 - PRIMER SEMESTRE']]
+
+```
+</center>
+
+]
+
+.panel[.panel-name[2020]
+
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_reg_carr2[['2020-11 - PRIMER SEMESTRE']]
+
+```
+</center>
+
+]
+
+.panel[.panel-name[2021]
+
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_reg_carr2[['2021-11 - PRIMER SEMESTRE']]
+
+```
+</center>
+
+]
+
+]
+
+---
+
+### Resultados de la cursada por carrera
+#### **Segundo semestre**
+
+.panelset[
+.panel[.panel-name[2019]
+
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_reg_carr2[['2019-11 - SEGUNDO SEMESTRE']]
+
+```
+</center>
+
+]
+
+.panel[.panel-name[2020]
+
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_reg_carr2[['2020-11 - SEGUNDO SEMESTRE']]
+
+```
+</center>
+
+]
+
+.panel[.panel-name[2021]
+
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_reg_carr2[['2021-11 - SEGUNDO SEMESTRE']]
+
+```
+</center>
+
+]
+
+]
 ---
 class: center, middle
 # Contador Público
