@@ -1,3 +1,4 @@
+
 pal_col <- c("#B50E1A", "#FED105")
 carreras <- c('Ciencias Económicas', 'Contador Público', 'Licenciatura en Administración', 'Licenciatura en Economía')
 lab_carreras <- c('Cs. Económicas', 'Contador Público', 'Lic. en Administración', 'Lic. en Economía')

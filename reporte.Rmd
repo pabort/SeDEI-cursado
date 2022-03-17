@@ -61,7 +61,9 @@ source("R/plot_inscriptos_carrera.R")
 source("R/plot_inscriptos_carrera.R")
 source("R/plot_regular_carrera.R")
 source("R/plot_regular_carrera_2.R")
+source("R/plot_evol_actuacion_carrera.R")
 source("R/plot_partic_actuacion_carr.R")
+source("R/adecuacion_data_finales.R")
 ```
 
 
@@ -259,7 +261,88 @@ plot_lst_reg[['11 - SEGUNDO SEMESTRE']]
 class: inverse, center, middle
 
 # Resultados de cursada por carrera
+---
 
+### Actuación sobre cantidad de inscripciones a cursar
+#### **Primer semestre**
+
+.panelset[
+.panel[.panel-name[Contador Público]
+
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_evol_act_carr[['Contador Público-11 - PRIMER SEMESTRE']]
+
+```
+</center>
+
+]
+
+.panel[.panel-name[Lic. en Administración]
+
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_evol_act_carr[['Lic. en Administración-11 - PRIMER SEMESTRE']]
+
+```
+</center>
+
+]
+
+.panel[.panel-name[Lic. en Economía]
+
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_evol_act_carr[['Lic. en Economía-11 - PRIMER SEMESTRE']]
+
+```
+</center>
+
+]
+
+]
+
+
+---
+
+### Actuación sobre cantidad de inscripciones a cursar
+#### **Segundo semestre**
+
+.panelset[
+.panel[.panel-name[Contador Público]
+
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_evol_act_carr[['Contador Público-11 - SEGUNDO SEMESTRE']]
+
+```
+</center>
+
+]
+
+.panel[.panel-name[Lic. en Administración]
+
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_evol_act_carr[['Lic. en Administración-11 - SEGUNDO SEMESTRE']]
+
+```
+</center>
+
+]
+
+.panel[.panel-name[Lic. en Economía]
+
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_evol_act_carr[['Lic. en Economía-11 - SEGUNDO SEMESTRE']]
+
+```
+</center>
+
+]
+
+]
 ---
 
 ### Resultados de la cursada por carrera
@@ -341,648 +424,114 @@ plot_lst_reg_carr2[['2021-11 - SEGUNDO SEMESTRE']]
 ]
 
 ]
----
-class: center, middle
-# Contador Público
+
+
 
 ---
-### Actuación sobre cantidad de inscripciones a cursar
-#### **Primer semestre**
+class: inverse, center, middle
 
+# EXÁMENES FINALES
+
+---
+
+### Cantidad de inscripciones por época
+#### (Las cifras corresponden a años académicos)
 .panelset[
-.panel[.panel-name[2019]
-.pull-left[
+
+.panel[.panel-name[Febrero-Marzo]
 <center>
 ```{r, fig.align='center', out.height="100%", out.width="100%"}
-plot_lst_carr[['2019-11 - PRIMER SEMESTRE-Contador Público']]
+plot_lst_evol_finales[['Febrero']]
 
 ```
 </center>
 ]
 
-.pull-right[
-
-- 
-
-- 
-
-]
-]
-
-.panel[.panel-name[2020]
-.pull-left[
+.panel[.panel-name[Mayo]
 <center>
 ```{r, fig.align='center', out.height="100%", out.width="100%"}
-plot_lst_carr[['2020-11 - PRIMER SEMESTRE-Contador Público']]
+plot_lst_evol_finales[['Mayo']]
+
 ```
 </center>
 ]
 
-.pull-right[
-
-- 
-
-- 
-
-]
-]
-
-.panel[.panel-name[2021]
-.pull-left[
+.panel[.panel-name[Julio-Agosto]
 <center>
 ```{r, fig.align='center', out.height="100%", out.width="100%"}
-plot_lst_carr[['2021-11 - PRIMER SEMESTRE-Contador Público']]
+plot_lst_evol_finales[['Julio']]
+
 ```
 </center>
 ]
 
-.pull-right[
+.panel[.panel-name[Septiembre]
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_evol_finales[['Septiembre']]
 
-- 
+```
+</center>
+]
 
-- 
+.panel[.panel-name[Novimbre-Diciembre]
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_evol_finales[['Noviembre']]
+
+```
+</center>
 ]
+
 ]
-]
+
 
 ---
 
-
-
-### Actuación sobre cantidad de inscripciones a cursar
-#### **Segundo semestre**
-
+### Distribución entre aprobados y reprobados
+#### (Las proporciones solo contemplan estudiantes presentes)
 .panelset[
-.panel[.panel-name[2019]
-.pull-left[
+
+.panel[.panel-name[Febrero-Marzo]
 <center>
 ```{r, fig.align='center', out.height="100%", out.width="100%"}
-plot_lst_carr[['2019-11 - SEGUNDO SEMESTRE-Contador Público']]
+plot_lst_finales_aprobados[['Febrero']]
 ```
 </center>
 ]
 
-.pull-right[
-
-- 
-
-- 
-
-]
-]
-
-.panel[.panel-name[2020]
-.pull-left[
+.panel[.panel-name[Mayo]
 <center>
 ```{r, fig.align='center', out.height="100%", out.width="100%"}
-plot_lst_carr[['2020-11 - SEGUNDO SEMESTRE-Contador Público']]
-```
-</center>
-]
-
-.pull-right[
-
-- 
-
-- 
-
-]
-]
-
-.panel[.panel-name[2021]
-.pull-left[
-<center>
-```{r, fig.align='center', out.height="100%", out.width="100%"}
-plot_lst_carr[['2021-11 - SEGUNDO SEMESTRE-Contador Público']]
-```
-</center>
-]
-
-.pull-right[
-
-- 
-
-- 
-]
-]
-]
-
----
-
-
-### Resultados de la cursada
-#### **Sobre la base de inscripciones con actuación**
-
-.panelset[
-.panel[.panel-name[Resumen]
-
-- 
-
-- 
-
-]
-
-.panel[.panel-name[Primer semestre]
-
-<center>
-```{r, fig.align='center', out.height="100%", out.width="100%"}
-plot_lst_reg_carr[['11 - PRIMER SEMESTRE-Contador Público']]
-```
-</center>
-
-]
-
-.panel[.panel-name[Segundo semestre]
-<center>
-```{r, fig.align='center', out.height="100%", out.width="100%"}
-plot_lst_reg_carr[['11 - SEGUNDO SEMESTRE-Contador Público']]
-```
-</center>
-]
-
-]
-
-
----
-class: center, middle
-# Licenciatura en Administración
-
----
-### Actuación sobre cantidad de inscripciones a cursar
-#### **Primer semestre**
-
-.panelset[
-.panel[.panel-name[2019]
-.pull-left[
-<center>
-```{r, fig.align='center', out.height="100%", out.width="100%"}
-plot_lst_carr[['2019-11 - PRIMER SEMESTRE-Lic. en Administración']]
+plot_lst_finales_aprobados[['Mayo']]
 
 ```
 </center>
 ]
 
-.pull-right[
-
-- 
-
-- 
-
-]
-]
-
-.panel[.panel-name[2020]
-.pull-left[
+.panel[.panel-name[Julio-Agosto]
 <center>
 ```{r, fig.align='center', out.height="100%", out.width="100%"}
-plot_lst_carr[['2020-11 - PRIMER SEMESTRE-Lic. en Administración']]
-```
-</center>
-]
-
-.pull-right[
-
-- 
-
-- 
-
-]
-]
-
-.panel[.panel-name[2021]
-.pull-left[
-<center>
-```{r, fig.align='center', out.height="100%", out.width="100%"}
-plot_lst_carr[['2021-11 - PRIMER SEMESTRE-Lic. en Administración']]
-```
-</center>
-]
-
-.pull-right[
-
-- 
-
-- 
-]
-]
-]
-
----
-
-
-
-### Actuación sobre cantidad de inscripciones a cursar
-#### **Segundo semestre**
-
-.panelset[
-.panel[.panel-name[2019]
-.pull-left[
-<center>
-```{r, fig.align='center', out.height="100%", out.width="100%"}
-plot_lst_carr[['2019-11 - SEGUNDO SEMESTRE-Lic. en Administración']]
-```
-</center>
-]
-
-.pull-right[
-
-- 
-
-- 
-
-]
-]
-
-.panel[.panel-name[2020]
-.pull-left[
-<center>
-```{r, fig.align='center', out.height="100%", out.width="100%"}
-plot_lst_carr[['2020-11 - SEGUNDO SEMESTRE-Lic. en Administración']]
-```
-</center>
-]
-
-.pull-right[
-
-- 
-
-- 
-
-]
-]
-
-.panel[.panel-name[2021]
-.pull-left[
-<center>
-```{r, fig.align='center', out.height="100%", out.width="100%"}
-plot_lst_carr[['2021-11 - SEGUNDO SEMESTRE-Lic. en Administración']]
-```
-</center>
-]
-
-.pull-right[
-
-- 
-
-- 
-]
-]
-]
-
----
-
-
-### Resultados de la cursada
-#### **Sobre la base de inscripciones con actuación**
-
-.panelset[
-.panel[.panel-name[Resumen]
-
-- 
-
-- 
-
-]
-
-.panel[.panel-name[Primer semestre]
-
-<center>
-```{r, fig.align='center', out.height="100%", out.width="100%"}
-plot_lst_reg_carr[['11 - PRIMER SEMESTRE-Lic. en Administración']]
-```
-</center>
-
-]
-
-.panel[.panel-name[Segundo semestre]
-<center>
-```{r, fig.align='center', out.height="100%", out.width="100%"}
-plot_lst_reg_carr[['11 - SEGUNDO SEMESTRE-Lic. en Administración']]
-```
-</center>
-]
-
-]
-
----
-class: center, middle
-# Licenciatura en Economía
-
----
-### Actuación sobre cantidad de inscripciones a cursar
-#### **Primer semestre**
-
-.panelset[
-.panel[.panel-name[2019]
-.pull-left[
-<center>
-```{r, fig.align='center', out.height="100%", out.width="100%"}
-plot_lst_carr[['2019-11 - PRIMER SEMESTRE-Lic. en Economía']]
+plot_lst_finales_aprobados[['Julio']]
 
 ```
 </center>
 ]
 
-.pull-right[
-
-- 
-
-- 
-
-]
-]
-
-.panel[.panel-name[2020]
-.pull-left[
+.panel[.panel-name[Septiembre]
 <center>
 ```{r, fig.align='center', out.height="100%", out.width="100%"}
-plot_lst_carr[['2020-11 - PRIMER SEMESTRE-Lic. en Economía']]
-```
-</center>
-]
-
-.pull-right[
-
-- 
-
-- 
-
-]
-]
-
-.panel[.panel-name[2021]
-.pull-left[
-<center>
-```{r, fig.align='center', out.height="100%", out.width="100%"}
-plot_lst_carr[['2021-11 - PRIMER SEMESTRE-Lic. en Economía']]
-```
-</center>
-]
-
-.pull-right[
-
-- 
-
-- 
-]
-]
-]
-
----
-
-
-
-### Actuación sobre cantidad de inscripciones a cursar
-#### **Segundo semestre**
-
-.panelset[
-.panel[.panel-name[2019]
-.pull-left[
-<center>
-```{r, fig.align='center', out.height="100%", out.width="100%"}
-plot_lst_carr[['2019-11 - SEGUNDO SEMESTRE-Lic. en Economía']]
-```
-</center>
-]
-
-.pull-right[
-
-- 
-
-- 
-
-]
-]
-
-.panel[.panel-name[2020]
-.pull-left[
-<center>
-```{r, fig.align='center', out.height="100%", out.width="100%"}
-plot_lst_carr[['2020-11 - SEGUNDO SEMESTRE-Lic. en Economía']]
-```
-</center>
-]
-
-.pull-right[
-
-- 
-
-- 
-
-]
-]
-
-.panel[.panel-name[2021]
-.pull-left[
-<center>
-```{r, fig.align='center', out.height="100%", out.width="100%"}
-plot_lst_carr[['2021-11 - SEGUNDO SEMESTRE-Lic. en Economía']]
-```
-</center>
-]
-
-.pull-right[
-
-- 
-
-- 
-]
-]
-]
-
----
-
-
-### Resultados de la cursada
-#### **Sobre la base de inscripciones con actuación**
-
-.panelset[
-.panel[.panel-name[Resumen]
-
-- 
-
-- 
-
-]
-
-.panel[.panel-name[Primer semestre]
-
-<center>
-```{r, fig.align='center', out.height="100%", out.width="100%"}
-plot_lst_reg_carr[['11 - PRIMER SEMESTRE-Lic. en Economía']]
-```
-</center>
-
-]
-
-.panel[.panel-name[Segundo semestre]
-<center>
-```{r, fig.align='center', out.height="100%", out.width="100%"}
-plot_lst_reg_carr[['11 - SEGUNDO SEMESTRE-Lic. en Economía']]
-```
-</center>
-]
-
-]
-
-
----
-class: center, middle
-# Ciencias Económicas
-
-(Estudiantes que aún no han elegido carrera)
-
----
-### Actuación sobre cantidad de inscripciones a cursar
-#### **Primer semestre**
-
-.panelset[
-.panel[.panel-name[2019]
-.pull-left[
-<center>
-```{r, fig.align='center', out.height="100%", out.width="100%"}
-plot_lst_carr[['2019-11 - PRIMER SEMESTRE-Cs. Económicas']]
+plot_lst_finales_aprobados[['Septiembre']]
 
 ```
 </center>
 ]
 
-.pull-right[
-
-- 
-
-- 
-
-]
-]
-
-.panel[.panel-name[2020]
-.pull-left[
+.panel[.panel-name[Novimbre-Diciembre]
 <center>
 ```{r, fig.align='center', out.height="100%", out.width="100%"}
-plot_lst_carr[['2020-11 - PRIMER SEMESTRE-Cs. Económicas']]
-```
-</center>
-]
+plot_lst_finales_aprobados[['Noviembre']]
 
-.pull-right[
-
-- 
-
-- 
-
-]
-]
-
-.panel[.panel-name[2021]
-.pull-left[
-<center>
-```{r, fig.align='center', out.height="100%", out.width="100%"}
-plot_lst_carr[['2021-11 - PRIMER SEMESTRE-Cs. Económicas']]
-```
-</center>
-]
-
-.pull-right[
-
-- 
-
-- 
-]
-]
-]
-
----
-
-
-
-### Actuación sobre cantidad de inscripciones a cursar
-#### **Segundo semestre**
-
-.panelset[
-.panel[.panel-name[2019]
-.pull-left[
-<center>
-```{r, fig.align='center', out.height="100%", out.width="100%"}
-plot_lst_carr[['2019-11 - SEGUNDO SEMESTRE-Cs. Económicas']]
-```
-</center>
-]
-
-.pull-right[
-
-- 
-
-- 
-
-]
-]
-
-.panel[.panel-name[2020]
-.pull-left[
-<center>
-```{r, fig.align='center', out.height="100%", out.width="100%"}
-plot_lst_carr[['2020-11 - SEGUNDO SEMESTRE-Cs. Económicas']]
-```
-</center>
-]
-
-.pull-right[
-
-- 
-
-- 
-
-]
-]
-
-.panel[.panel-name[2021]
-.pull-left[
-<center>
-```{r, fig.align='center', out.height="100%", out.width="100%"}
-plot_lst_carr[['2021-11 - SEGUNDO SEMESTRE-Cs. Económicas']]
-```
-</center>
-]
-
-.pull-right[
-
-- 
-
-- 
-]
-]
-]
-
----
-
-
-### Resultados de la cursada
-#### **Sobre la base de inscripciones con actuación**
-
-.panelset[
-.panel[.panel-name[Resumen]
-
-- 
-
-- 
-
-]
-
-.panel[.panel-name[Primer semestre]
-
-<center>
-```{r, fig.align='center', out.height="100%", out.width="100%"}
-plot_lst_reg_carr[['11 - PRIMER SEMESTRE-Cs. Económicas']]
-```
-</center>
-
-]
-
-.panel[.panel-name[Segundo semestre]
-<center>
-```{r, fig.align='center', out.height="100%", out.width="100%"}
-plot_lst_reg_carr[['11 - SEGUNDO SEMESTRE-Cs. Económicas']]
 ```
 </center>
 ]

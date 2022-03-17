@@ -28,7 +28,6 @@ filter_periodo <- paste0(c(rep("2019-11 - PRIMER SEMESTRE-", 4), rep("2019-11 - 
                          lab_carreras)
 plot_lst_carr <- vector("list", length = length(filter_periodo) - 1)
 
-
 m <- list(
   l = 5,
   r = 5,
