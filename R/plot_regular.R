@@ -53,7 +53,8 @@ fig <- df_regular %>%
                 showarrow = F, xref='paper', yref='paper', 
                 xanchor='right', yanchor='auto', xshift=0, yshift=0,
                 font=list(size =14, color="gray")),
-         xaxis = list(title = ''), yaxis = list(title = 'Porcentaje (%)'),
+         xaxis = list(title = ''), yaxis = list(title = list(text=''),
+                                                ticksuffix = "%",  range = c(0, 100)),
          hoverlabel = list(font=list(size=20)),
          margin = m) %>%
   config(displayModeBar = F)

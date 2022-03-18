@@ -1032,3 +1032,201 @@ plot_lst_reg_carr2[['2021-11 - SEGUNDO SEMESTRE']]
 ]
 
 ]
+
+
+---
+class: center, middle
+
+# C.2. Exámenes finales
+## [Ciclo Básico]
+```{r include=FALSE}
+source("R/C1-adecuacion_data_finales_basico.R")
+```
+
+---
+
+### C.2.1. Evolución de la cantidad de inscripciones por época
+#### **Ciclo Básico** (Las cifras corresponden a años académicos)
+.panelset[
+.panel[.panel-name[Febrero-Marzo]
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_evol_finales[['Febrero']]
+
+```
+</center>
+]
+
+
+.panel[.panel-name[Julio-Agosto]
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_evol_finales[['Julio']]
+
+```
+</center>
+]
+
+
+.panel[.panel-name[Noviembre-Diciembre]
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_evol_finales[['Noviembre']]
+
+```
+</center>
+]
+
+]
+
+
+---
+
+### C.2.2 Distribución entre aprobados y reprobados
+#### **Ciclo Básico** (Las proporciones solo contemplan estudiantes presentes)
+.panelset[
+
+.panel[.panel-name[Febrero-Marzo]
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_finales_aprobados[['Febrero']]
+```
+</center>
+]
+
+
+.panel[.panel-name[Julio-Agosto]
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_finales_aprobados[['Julio']]
+
+```
+</center>
+]
+
+
+.panel[.panel-name[Noviembre-Diciembre]
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_finales_aprobados[['Noviembre']]
+
+```
+</center>
+]
+
+]
+
+
+---
+class: center, middle
+
+# C.2. Exámenes finales
+## [Ciclo Superior]
+```{r include=FALSE}
+source("R/C1-adecuacion_data_finales_superior.R")
+```
+
+---
+
+### C.2.1. Evolución de la cantidad de inscripciones por época
+#### **Ciclo Superior** (Las cifras corresponden a años académicos)
+.panelset[
+.panel[.panel-name[Febrero-Marzo]
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_evol_finales[['Febrero']]
+
+```
+</center>
+]
+
+.panel[.panel-name[Mayo]
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_evol_finales[['Mayo']]
+
+```
+</center>
+]
+
+.panel[.panel-name[Julio-Agosto]
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_evol_finales[['Julio']]
+
+```
+</center>
+]
+
+.panel[.panel-name[Septiembre]
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_evol_finales[['Septiembre']]
+
+```
+</center>
+]
+
+.panel[.panel-name[Noviembre-Diciembre]
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_evol_finales[['Noviembre']]
+
+```
+</center>
+]
+
+]
+
+
+---
+
+### C.2.2 Distribución entre aprobados y reprobados
+#### **Ciclo Superior** (Las proporciones solo contemplan estudiantes presentes)
+.panelset[
+
+.panel[.panel-name[Febrero-Marzo]
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_finales_aprobados[['Febrero']]
+```
+</center>
+]
+
+.panel[.panel-name[Mayo]
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_finales_aprobados[['Mayo']]
+
+```
+</center>
+]
+
+.panel[.panel-name[Julio-Agosto]
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_finales_aprobados[['Julio']]
+
+```
+</center>
+]
+
+.panel[.panel-name[Septiembre]
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_finales_aprobados[['Septiembre']]
+
+```
+</center>
+]
+
+.panel[.panel-name[Noviembre-Diciembre]
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_finales_aprobados[['Noviembre']]
+
+```
+</center>
+]
+
+]
