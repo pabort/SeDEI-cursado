@@ -1,6 +1,6 @@
 pal_col <- c("#B50E1A", "#FED105")
-carreras <- c('Contador Público', 'Licenciatura en Administración', 'Licenciatura en Economía') # 'Ciencias Económicas', 
-lab_carreras <- c('Contador Público', 'Lic. en Administración', 'Lic. en Economía') # 'Cs. Económicas', 
+carreras <- c('Ciencias Económicas','Contador Público', 'Licenciatura en Administración', 'Licenciatura en Economía') #  
+lab_carreras <- c('Cs. Económicas', 'Contador Público', 'Lic. en Administración', 'Lic. en Economía') # 
 
 f <- list(
   size = 20,
@@ -9,15 +9,14 @@ f <- list(
 df_regular_carr <- df_cursadas %>% 
   mutate(actuacion = if_else(resultado_desc == "Sin Actuación", "Sin actuación", "Con actuación")) %>% 
   filter(actuacion == "Con actuación", propuesta_formativa_desc %in% carreras) %>% 
-  select(anio_academico, periodo_lectivo, propuesta_formativa_desc, resultado_desc, cantidad_alumnos) %>% 
-  group_by(anio_academico, periodo_lectivo, propuesta_formativa_desc, resultado_desc) %>% 
+  select(anio_academico, periodo_lectivo, tipo_propuesta_formativa_desc, resultado_desc, cantidad_alumnos) %>% 
+  group_by(anio_academico, periodo_lectivo, tipo_propuesta_formativa_desc, resultado_desc) %>% 
   summarise(cantidad = sum(cantidad_alumnos)) %>% 
   mutate(porcentaje = cantidad / sum(cantidad)*100) %>% 
   #  mutate(time = paste(anio_academico)) %>% 
   #  spread(resultado_desc, cantidad) %>% 
   mutate(anio_academico = as.factor(anio_academico),
          resultado_desc = factor(resultado_desc, levels = c('Regular', 'Libre'), labels = c('Regulares', 'Libres')),
-         propuesta_formativa_desc = factor(propuesta_formativa_desc, levels = carreras, labels = lab_carreras),
          time_carr = paste0(anio_academico, "-", periodo_lectivo))
 
 
@@ -31,7 +30,7 @@ m <- list(
 
 filter_periodo <- paste0(c(2019:2021),
                          c(rep("-11 - PRIMER SEMESTRE", 3), rep("-11 - SEGUNDO SEMESTRE", 3))
-                         )
+)
 
 plot_lst_reg_carr2 <- vector("list", length = length(filter_periodo))
 
@@ -40,7 +39,7 @@ for (i in filter_periodo) {
   fig <- df_regular_carr %>% 
     filter(time_carr == i) %>% 
     plot_ly(width = 800, height = 420,
-      y = ~propuesta_formativa_desc, x = ~porcentaje, color = ~resultado_desc, 
+            y = ~tipo_propuesta_formativa_desc, x = ~porcentaje, color = ~resultado_desc, 
             type = 'bar', orientation = 'h',
             colors = rev(pal_col),
             text = ~paste(

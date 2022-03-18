@@ -4,16 +4,15 @@ lab_carreras <- c('Cs. Económicas', 'Contador Público', 'Lic. en Administraci�
 
 df_evol_actuacion_carr <- df_cursadas %>% 
   mutate(actuacion = if_else(resultado_desc == "Sin Actuación", "Sin actuación", "Con actuación")) %>% 
-  select(anio_academico, periodo_lectivo, propuesta_formativa_desc, actuacion, cantidad_alumnos) %>% 
+  select(anio_academico, periodo_lectivo, propuesta_formativa_desc,tipo_propuesta_formativa_desc, actuacion, cantidad_alumnos) %>% 
   filter(propuesta_formativa_desc %in% carreras,
          periodo_lectivo %in% c('11 - PRIMER SEMESTRE', '11 - SEGUNDO SEMESTRE')) %>% 
-  group_by(anio_academico, periodo_lectivo, propuesta_formativa_desc, actuacion) %>% #,resultado
+  group_by(anio_academico, periodo_lectivo, tipo_propuesta_formativa_desc, actuacion) %>% #,resultado
   summarise(cantidad = sum(cantidad_alumnos), .groups ='drop_last') %>% 
   mutate(porcentaje = cantidad/sum(cantidad)*100,
          anio_academico = as.factor(anio_academico),
          actuacion = factor(actuacion, levels = c('Con actuación', 'Sin actuación'), labels = c('Con actuación', 'Sin actuación')),
-         propuesta_formativa_desc = factor(propuesta_formativa_desc, levels = carreras, labels = lab_carreras),
-         time_carr = paste0(propuesta_formativa_desc, "-", periodo_lectivo))
+         time_carr = paste0(tipo_propuesta_formativa_desc, "-", periodo_lectivo))
 
 # Plot: cantidad de finales rendidos ----
 # incluimos presentes
@@ -68,3 +67,6 @@ for (i in periodos) {
   
   plot_lst_evol_act_carr[[i]] <- fig
 }
+
+plot_lst_evol_act_carr[['Ciclo Básico-11 - PRIMER SEMESTRE']]
+plot_lst_evol_act_carr[['Ciclo Profesional-11 - PRIMER SEMESTRE']]

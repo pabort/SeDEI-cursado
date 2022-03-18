@@ -1,5 +1,5 @@
 ---
-title: "Reporte cursada 2021"
+title: "Resultados académicos de estudiantes en los períodos 2019, 2020 y 2021"
 #subtitle: "Secretaría de Desarrollo y Evaluación Institucional"
 author: "Secretaría de Desarrollo y Evaluación Institucional"
 institute: "Facultad de Ciencias Económicas (UNC)"
@@ -67,14 +67,52 @@ source("R/adecuacion_data_finales.R")
 ```
 
 
-class: center, middle
+## Resumen
 
-# Agregar resumen
+Ante la situación de pandemia del Covid 19, la FCE enfrentó un importante desafío de pensar y reflexionar la manera en que los estudiantes deberían abordar los aprendizajes en un nuevo contexto y poner en marcha una nueva propuesta pedagógica virtual.
+
+En esta oportunidad se presentan indicadores académicos, estadísticas de cursadas y de exámenes, de los semestres académicos en períodos 2020 y 2021, comparados con 2019, año con modalidad presencial. De este modo, se exponen
+tres secciones 
+
+- **A. Estadísticas a nivel general** Se consideran a nivel agregado las tres carreras de la FCE: Contador Público, Licenciatura en Administración, Licenciatura enEconomía. También se encuentran incluidos aquellos estudiantes que no hay elegido carrera al momento de la actualización de este informe (clasificados como estudiantes de *Ciencias Economómicas*)
+
+- **B. Estadísticas por carrera** Se analiza de forma comparativa las carreras de Contador Público, Licenciatura en Administración, Licenciatura enEconomía.
+
+- **C. Estadísticas por ciclo** Se analiza de forma comparativa el Ciclo Básico y el Ciclo Profesional.
+
+En todos los casos se empleó como fuente los datos de Guaraní provistos por el sistema de [cubos OLAP](https://es.wikipedia.org/wiki/Cubo_OLAP)  desarrollados desde la Prosecretaría Informática de la UNC. La última actualización de datos obtenida es a la fecha de realización de este informe.
 
 ---
-### Inscripciones a cursar
+
+### Comentarios generales
+
+- En el primer semestre de cursado se observa una importante disminución de los y las estudiantes sin actuación académica (15,7%), respecto a los años 2019 y 2021 que se mantienen en niveles similares (23,8% y 24,6%).
+
+- En cambio, en el segundo semestre, el porcentaje de estudiantes sin actuación se mantiene a lo largo de los tres años.
+
+-  En el primer semestre del año 2020 el porcentaje de regulares aumentó en un poco más de 10 puntos porcentuales respecto al 2019, mientras que en 2021 se observa una importante disminución llegando a un 5% menos que en 2019. 
+
+- En cambio, en el segundo semestre de 2020 se mantiene el porcentaje de regulares respecto al 2019, y disminuye en 2021 respecto a ese periodo, en un 7%.
+
+- En el turno de examen de julio-agosto 2020 se inscribieron más estudiantes respecto de 2019, sin embargo la proporción de presentes fue inferior casi cuatro puntos porcentuales. En el mismo turno del 2021, las cifras volvieron a los niveles de 2019, tanto en términos absolutos como relativos.
+
+- En los turnos de noviembre-diciembre la dinámica fue similar, excepto en 2021 en el que la proprorción de presentes disminuyó en aproximadamente diez puntos porcentuales, aun cuando la cantidad de inscriptos fue similar a la de 2019.
+
+---
+class: inverse, center, middle
+
+# A. Estadísticas a nivel general
+
+---
+class: center, middle
+
+# A.1. Cursado
+
+---
+
+### A.1.1. Inscripciones a cursar
 .panelset[
-.panel[.panel-name[General]
+.panel[.panel-name[Evolución]
 <center>
 ```{r, fig.align='center', out.height="100%", out.width="100%"}
 fig_inscrip
@@ -97,37 +135,43 @@ plot_lst_insc_carr[['11 - SEGUNDO SEMESTRE']]
 </center>
 ]
 ]
----
-class: inverse, center, middle
-
-# Resultados de cursada a nivel general
 
 ---
-### Actuación sobre cantidad de inscripciones a cursar
-#### **Primer semestre**
+### A.1.2. Actuación sobre cantidad de inscripciones a cursar
 
 .panelset[
 .panel[.panel-name[2019]
 .pull-left[
 <center>
-```{r, fig.align='center', out.height="100%", out.width="100%"}
+
+Primer semestre
+
+```{r, fig.align='center', out.height="85%", out.width="85%"}
 plot_lst[['2019 11 - PRIMER SEMESTRE']]
 ```
 </center>
+
 ]
 
 .pull-right[
 
-- 
+<center>
 
-- 
+Segundo semestre
+
+```{r, fig.align='center', out.height="85%", out.width="85%"}
+plot_lst[['2019 11 - SEGUNDO SEMESTRE']]
+```
+</center>
 
 ]
 ]
 
 .panel[.panel-name[2020]
 .pull-left[
+
 <center>
+Primer semestre
 ```{r, fig.align='center', out.height="100%", out.width="100%"}
 plot_lst[['2020 11 - PRIMER SEMESTRE']]
 ```
@@ -135,10 +179,14 @@ plot_lst[['2020 11 - PRIMER SEMESTRE']]
 ]
 
 .pull-right[
+<center>
+Segundo semestre
 
-- 
 
-- 
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst[['2020 11 - SEGUNDO SEMESTRE']]
+```
+</center>
 
 ]
 ]
@@ -146,6 +194,9 @@ plot_lst[['2020 11 - PRIMER SEMESTRE']]
 .panel[.panel-name[2021]
 .pull-left[
 <center>
+
+Primer semestre
+
 ```{r, fig.align='center', out.height="100%", out.width="100%"}
 plot_lst[['2021 11 - PRIMER SEMESTRE']]
 ```
@@ -154,90 +205,26 @@ plot_lst[['2021 11 - PRIMER SEMESTRE']]
 
 .pull-right[
 
-- 
-
-- 
-]
-]
-]
-
----
-
-
-
-### Actuación sobre cantidad de inscripciones a cursar
-#### **Segundo semestre**
-
-.panelset[
-.panel[.panel-name[2019]
-.pull-left[
 <center>
-```{r, fig.align='center', out.height="100%", out.width="100%"}
-plot_lst[['2019 11 - SEGUNDO SEMESTRE']]
-```
-</center>
-]
+Segundo semestre
 
-.pull-right[
-
-- 
-
-- 
-
-]
-]
-
-.panel[.panel-name[2020]
-.pull-left[
-<center>
-```{r, fig.align='center', out.height="100%", out.width="100%"}
-plot_lst[['2020 11 - SEGUNDO SEMESTRE']]
-```
-</center>
-]
-
-.pull-right[
-
-- 
-
-- 
-
-]
-]
-
-.panel[.panel-name[2021]
-.pull-left[
-<center>
 ```{r, fig.align='center', out.height="100%", out.width="100%"}
 plot_lst[['2021 11 - SEGUNDO SEMESTRE']]
 ```
 </center>
 ]
-
-.pull-right[
-
-- 
-
-- 
 ]
+
 ]
-]
+
 
 ---
 
 
-### Resultados de la cursada
-#### **Sobre la base de inscripciones con actuación**
+### A.1.3 Resultados de los cursos realizados
+#### (Sobre la base de inscripciones con actuación)
 
 .panelset[
-.panel[.panel-name[Resumen]
-
--  
-
-- 
-
-]
-
 .panel[.panel-name[Primer semestre]
 
 <center>
@@ -257,13 +244,130 @@ plot_lst_reg[['11 - SEGUNDO SEMESTRE']]
 ]
 
 ]
+
+
+---
+class: center, middle
+
+# A.2. Exámenes finales
+
+---
+
+### A.2.1. Evolución de la cantidad de inscripciones por época
+#### (Las cifras corresponden a años académicos)
+.panelset[
+.panel[.panel-name[Febrero-Marzo]
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_evol_finales[['Febrero']]
+
+```
+</center>
+]
+
+.panel[.panel-name[Mayo]
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_evol_finales[['Mayo']]
+
+```
+</center>
+]
+
+.panel[.panel-name[Julio-Agosto]
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_evol_finales[['Julio']]
+
+```
+</center>
+]
+
+.panel[.panel-name[Septiembre]
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_evol_finales[['Septiembre']]
+
+```
+</center>
+]
+
+.panel[.panel-name[Noviembre-Diciembre]
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_evol_finales[['Noviembre']]
+
+```
+</center>
+]
+
+]
+
+
+---
+
+### A.2.2 Distribución entre aprobados y reprobados
+#### (Las proporciones solo contemplan estudiantes presentes)
+.panelset[
+
+.panel[.panel-name[Febrero-Marzo]
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_finales_aprobados[['Febrero']]
+```
+</center>
+]
+
+.panel[.panel-name[Mayo]
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_finales_aprobados[['Mayo']]
+
+```
+</center>
+]
+
+.panel[.panel-name[Julio-Agosto]
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_finales_aprobados[['Julio']]
+
+```
+</center>
+]
+
+.panel[.panel-name[Septiembre]
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_finales_aprobados[['Septiembre']]
+
+```
+</center>
+]
+
+.panel[.panel-name[Noviembre-Diciembre]
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_finales_aprobados[['Noviembre']]
+
+```
+</center>
+]
+
+]
+
 ---
 class: inverse, center, middle
 
-# Resultados de cursada por carrera
+# B. Estadísticas por carrera
 ---
 
-### Actuación sobre cantidad de inscripciones a cursar
+class: center, middle
+
+# B.1. Cursado
+---
+
+### B.1.1. Actuación sobre cantidad de inscripciones a cursar
 #### **Primer semestre**
 
 .panelset[
@@ -305,7 +409,7 @@ plot_lst_evol_act_carr[['Lic. en Economía-11 - PRIMER SEMESTRE']]
 
 ---
 
-### Actuación sobre cantidad de inscripciones a cursar
+### B.1.1. Actuación sobre cantidad de inscripciones a cursar
 #### **Segundo semestre**
 
 .panelset[
@@ -345,7 +449,7 @@ plot_lst_evol_act_carr[['Lic. en Economía-11 - SEGUNDO SEMESTRE']]
 ]
 ---
 
-### Resultados de la cursada por carrera
+### B.1.2. Resultados de las materias cursadas por carrera
 #### **Primer semestre**
 
 .panelset[
@@ -386,7 +490,7 @@ plot_lst_reg_carr2[['2021-11 - PRIMER SEMESTRE']]
 
 ---
 
-### Resultados de la cursada por carrera
+### B.1.2. Resultados de las materias cursadas por carrera
 #### **Segundo semestre**
 
 .panelset[
@@ -426,18 +530,20 @@ plot_lst_reg_carr2[['2021-11 - SEGUNDO SEMESTRE']]
 ]
 
 
+---
+class: center, middle
+
+# B.2. Exámenes finales
+## [Contador Público]
+```{r include=FALSE}
+source("R/1-adecuacion_data_finales_contador.R")
+```
 
 ---
-class: inverse, center, middle
 
-# EXÁMENES FINALES
-
----
-
-### Cantidad de inscripciones por época
-#### (Las cifras corresponden a años académicos)
+### B.2.1. Evolución de la cantidad de inscripciones por época
+#### **Contador Público** (Las cifras corresponden a años académicos)
 .panelset[
-
 .panel[.panel-name[Febrero-Marzo]
 <center>
 ```{r, fig.align='center', out.height="100%", out.width="100%"}
@@ -474,7 +580,7 @@ plot_lst_evol_finales[['Septiembre']]
 </center>
 ]
 
-.panel[.panel-name[Novimbre-Diciembre]
+.panel[.panel-name[Noviembre-Diciembre]
 <center>
 ```{r, fig.align='center', out.height="100%", out.width="100%"}
 plot_lst_evol_finales[['Noviembre']]
@@ -488,8 +594,8 @@ plot_lst_evol_finales[['Noviembre']]
 
 ---
 
-### Distribución entre aprobados y reprobados
-#### (Las proporciones solo contemplan estudiantes presentes)
+### B.2.2 Distribución entre aprobados y reprobados
+#### **Contador Público** (Las proporciones solo contemplan estudiantes presentes)
 .panelset[
 
 .panel[.panel-name[Febrero-Marzo]
@@ -527,13 +633,402 @@ plot_lst_finales_aprobados[['Septiembre']]
 </center>
 ]
 
-.panel[.panel-name[Novimbre-Diciembre]
+.panel[.panel-name[Noviembre-Diciembre]
 <center>
 ```{r, fig.align='center', out.height="100%", out.width="100%"}
 plot_lst_finales_aprobados[['Noviembre']]
 
 ```
 </center>
+]
+
+]
+
+
+---
+class: center, middle
+
+# B.2. Exámenes finales
+## [Licenciatura en Administración]
+```{r include=FALSE}
+source("R/2-adecuacion_data_finales_admin.R")
+```
+
+---
+
+### B.2.1. Evolución de la cantidad de inscripciones por época
+#### **Licenciatura en Administración** (Las cifras corresponden a años académicos)
+.panelset[
+.panel[.panel-name[Febrero-Marzo]
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_evol_finales[['Febrero']]
+
+```
+</center>
+]
+
+.panel[.panel-name[Mayo]
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_evol_finales[['Mayo']]
+
+```
+</center>
+]
+
+.panel[.panel-name[Julio-Agosto]
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_evol_finales[['Julio']]
+
+```
+</center>
+]
+
+.panel[.panel-name[Septiembre]
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_evol_finales[['Septiembre']]
+
+```
+</center>
+]
+
+.panel[.panel-name[Noviembre-Diciembre]
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_evol_finales[['Noviembre']]
+
+```
+</center>
+]
+
+]
+
+
+---
+
+### B.2.2 Distribución entre aprobados y reprobados
+#### **Licenciatura en Administración** (Las proporciones solo contemplan estudiantes presentes)
+.panelset[
+
+.panel[.panel-name[Febrero-Marzo]
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_finales_aprobados[['Febrero']]
+```
+</center>
+]
+
+.panel[.panel-name[Mayo]
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_finales_aprobados[['Mayo']]
+
+```
+</center>
+]
+
+.panel[.panel-name[Julio-Agosto]
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_finales_aprobados[['Julio']]
+
+```
+</center>
+]
+
+.panel[.panel-name[Septiembre]
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_finales_aprobados[['Septiembre']]
+
+```
+</center>
+]
+
+.panel[.panel-name[Noviembre-Diciembre]
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_finales_aprobados[['Noviembre']]
+
+```
+</center>
+]
+
+]
+
+---
+class: center, middle
+
+# B.2. Exámenes finales
+## [Licenciatura en Economía]
+```{r include=FALSE}
+source("R/3-adecuacion_data_finales_eco.R")
+```
+
+---
+
+### B.2.1. Evolución de la cantidad de inscripciones por época
+#### **Licenciatura en Economía** (Las cifras corresponden a años académicos)
+.panelset[
+.panel[.panel-name[Febrero-Marzo]
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_evol_finales[['Febrero']]
+
+```
+</center>
+]
+
+.panel[.panel-name[Mayo]
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_evol_finales[['Mayo']]
+
+```
+</center>
+]
+
+.panel[.panel-name[Julio-Agosto]
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_evol_finales[['Julio']]
+
+```
+</center>
+]
+
+.panel[.panel-name[Septiembre]
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_evol_finales[['Septiembre']]
+
+```
+</center>
+]
+
+.panel[.panel-name[Noviembre-Diciembre]
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_evol_finales[['Noviembre']]
+
+```
+</center>
+]
+
+]
+
+
+---
+
+### B.2.2 Distribución entre aprobados y reprobados
+#### **Licenciatura en Economía** (Las proporciones solo contemplan estudiantes presentes)
+.panelset[
+
+.panel[.panel-name[Febrero-Marzo]
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_finales_aprobados[['Febrero']]
+```
+</center>
+]
+
+.panel[.panel-name[Mayo]
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_finales_aprobados[['Mayo']]
+
+```
+</center>
+]
+
+.panel[.panel-name[Julio-Agosto]
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_finales_aprobados[['Julio']]
+
+```
+</center>
+]
+
+.panel[.panel-name[Septiembre]
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_finales_aprobados[['Septiembre']]
+
+```
+</center>
+]
+
+.panel[.panel-name[Noviembre-Diciembre]
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_finales_aprobados[['Noviembre']]
+
+```
+</center>
+]
+
+]
+
+---
+class: inverse, center, middle
+
+# C. Estadísticas por ciclo
+---
+
+class: center, middle
+
+# C.1. Cursado
+```{r include=FALSE}
+source("R/plot_evol_actuacion_ciclo.R")
+```
+
+---
+
+### C.1.1. Actuación sobre cantidad de inscripciones a cursar
+#### **Primer semestre**
+
+.panelset[
+.panel[.panel-name[Ciclo Básico]
+
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_evol_act_carr[['Ciclo Básico-11 - PRIMER SEMESTRE']]
+
+```
+</center>
+
+]
+
+.panel[.panel-name[Ciclo Profesional]
+
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_evol_act_carr[['Ciclo Profesional-11 - PRIMER SEMESTRE']]
+
+```
+</center>
+
+]
+
+]
+
+---
+
+### C.1.1. Actuación sobre cantidad de inscripciones a cursar
+#### **Segundo semestre**
+
+.panelset[
+.panel[.panel-name[Ciclo Básico]
+
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_evol_act_carr[['Ciclo Básico-11 - SEGUNDO SEMESTRE']]
+
+```
+</center>
+
+]
+
+.panel[.panel-name[Ciclo Profesional]
+
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_evol_act_carr[['Ciclo Profesional-11 - SEGUNDO SEMESTRE']]
+
+```
+</center>
+
+]
+
+]
+
+---
+
+```{r include=FALSE}
+source("R/C_plot_regular_carrera_2.R")
+```
+
+### C.1.2. Resultados de las materias cursadas por carrera
+
+#### **Primer semestre**
+
+.panelset[
+.panel[.panel-name[2019]
+
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_reg_carr2[['2019-11 - PRIMER SEMESTRE']]
+
+```
+</center>
+
+]
+
+.panel[.panel-name[2020]
+
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_reg_carr2[['2020-11 - PRIMER SEMESTRE']]
+
+```
+</center>
+
+]
+
+.panel[.panel-name[2021]
+
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_reg_carr2[['2021-11 - PRIMER SEMESTRE']]
+
+```
+</center>
+
+]
+
+]
+
+---
+
+### C.1.2. Resultados de las materias cursadas por carrera
+#### **Segundo semestre**
+
+.panelset[
+.panel[.panel-name[2019]
+
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_reg_carr2[['2019-11 - SEGUNDO SEMESTRE']]
+
+```
+</center>
+
+]
+
+.panel[.panel-name[2020]
+
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_reg_carr2[['2020-11 - SEGUNDO SEMESTRE']]
+
+```
+</center>
+
+]
+
+.panel[.panel-name[2021]
+
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_reg_carr2[['2021-11 - SEGUNDO SEMESTRE']]
+
+```
+</center>
+
 ]
 
 ]
