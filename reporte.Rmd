@@ -3,7 +3,7 @@ title: "Resultados académicos de estudiantes en los períodos 2019, 2020 y 2021
 #subtitle: "Secretaría de Desarrollo y Evaluación Institucional"
 author: "Secretaría de Desarrollo y Evaluación Institucional"
 institute: "Facultad de Ciencias Económicas (UNC)"
-date: "updated: `r Sys.Date()`"
+date: "Marzo de 2022"
 output:
   xaringan::moon_reader:
     css: xaringan-themer.css
