@@ -74,7 +74,7 @@ Ante la situación de pandemia del Covid 19, la FCE enfrentó un importante desa
 En esta oportunidad se presentan indicadores académicos, estadísticas de cursadas y de exámenes, de los semestres académicos en períodos 2020 y 2021, comparados con 2019, año con modalidad presencial. De este modo, se exponen
 tres secciones 
 
-- **A. Estadísticas a nivel general** Se consideran a nivel agregado las tres carreras de la FCE: Contador Público, Licenciatura en Administración, Licenciatura enEconomía. También se encuentran incluidos aquellos estudiantes que no hay elegido carrera al momento de la actualización de este informe (clasificados como estudiantes de *Ciencias Economómicas*)
+- **A. Estadísticas a nivel general** Se consideran a nivel agregado las tres carreras de la FCE: Contador Público, Licenciatura en Administración, Licenciatura en Economía. También se encuentran incluidos aquellos estudiantes que no han elegido carrera al momento de la actualización de este informe (clasificados como estudiantes de *Ciencias Económicas*)
 
 - **B. Estadísticas por carrera** Se analiza de forma comparativa las carreras de Contador Público, Licenciatura en Administración, Licenciatura enEconomía.
 
