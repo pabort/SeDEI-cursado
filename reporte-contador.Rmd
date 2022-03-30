@@ -68,13 +68,21 @@ source("R/adecuacion_data_finales.R")
 
 ## Hoja de ruta
 
+<br>
+<br>
+
 - **A. Estadísticas de cursado por carrera**
 
-- **B. Estadísticas de cursada por ciclo**
+- **B. Estadísticas de cursada por ciclo**  (Contador Público)
 
 - **C. Exámenes finales a nivel general** (Contador Público)
 
 - **D. Exámenes finales por ciclo** (Contador Público)
+<br>
+<br>
+<br>
+.center[El informe a nivel general se encuentra disponible en 
+[https://bit.ly/SeDEI-reporte-cursado](https://pabort.github.io/SeDEI-cursado/reporte.html)]
 
 ---
 
