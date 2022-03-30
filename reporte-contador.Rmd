@@ -69,7 +69,6 @@ source("R/adecuacion_data_finales.R")
 ## Hoja de ruta
 
 <br>
-<br>
 
 - **A. Estadísticas de cursado por carrera**
 
@@ -82,7 +81,10 @@ source("R/adecuacion_data_finales.R")
 <br>
 <br>
 .center[El informe a nivel general se encuentra disponible en 
-[https://bit.ly/SeDEI-reporte-cursado](https://pabort.github.io/SeDEI-cursado/reporte.html)]
+[https://bit.ly/SeDEI-reporte-cursado](https://pabort.github.io/SeDEI-cursado/reporte.html)
+
+En todos los casos se empleó como fuente los datos de Guaraní provistos por el sistema de [cubos OLAP](https://es.wikipedia.org/wiki/Cubo_OLAP)  desarrollados desde la Prosecretaría Informática de la UNC. La última actualización de datos obtenida corresponde a la fecha de realización de este informe.
+]
 
 ---
 

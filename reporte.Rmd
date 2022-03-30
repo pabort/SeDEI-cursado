@@ -80,7 +80,7 @@ tres secciones
 
 - **C. Estadísticas por ciclo** Se analiza de forma comparativa el Ciclo Básico y el Ciclo Profesional.
 
-En todos los casos se empleó como fuente los datos de Guaraní provistos por el sistema de [cubos OLAP](https://es.wikipedia.org/wiki/Cubo_OLAP)  desarrollados desde la Prosecretaría Informática de la UNC. La última actualización de datos obtenida es a la fecha de realización de este informe.
+En todos los casos se empleó como fuente los datos de Guaraní provistos por el sistema de [cubos OLAP](https://es.wikipedia.org/wiki/Cubo_OLAP)  desarrollados desde la Prosecretaría Informática de la UNC. La última actualización de datos obtenida corresponde a la fecha de realización de este informe.
 
 ---
 
