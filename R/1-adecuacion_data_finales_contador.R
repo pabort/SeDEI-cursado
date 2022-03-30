@@ -7,13 +7,21 @@ vars_names <-  c('anio_academico',
                  'resultado',
                  'cantidad_alumnos')
 
-df_finales <- read_csv("data/data_finales_19_21_agregado.csv") %>% 
-  setNames(vars_names) %>% 
-  mutate(turno = str_extract(periodo_lectivo, paste(turnos, collapse = '|')),
-         resultado = ifelse(resultado == 'VACIO/NULO', 'Ausente', resultado),
-         resultado2 = ifelse(resultado %in% c('Aprobado', 'Reprobado'), 'Presentes', 'Ausentes')) %>% 
-  filter(propuesta_formativa_desc %in% carreras, turno != 'Nivelación')
+# df_finales <- read_csv("data/data_finales_19_21_agregado.csv") %>% 
+#   setNames(vars_names) %>% 
+#   mutate(turno = str_extract(periodo_lectivo, paste(turnos, collapse = '|')),
+#          resultado = ifelse(resultado == 'VACIO/NULO', 'Ausente', resultado),
+#          resultado2 = ifelse(resultado %in% c('Aprobado', 'Reprobado'), 'Presentes', 'Ausentes')) %>% 
+#   filter(propuesta_formativa_desc %in% carreras, turno != 'Nivelación')
 
+df_finales <- read_csv("data/data_finales_examen_materia.csv") %>% 
+  mutate(turno = str_extract(turno, paste(turnos, collapse = '|')),
+         resultado2 = resultado_desc,
+         cantidad_alumnos = q,
+         resultado =resultado_desc,
+         resultado2 = ifelse(resultado_desc %in% c('Aprobado', 'Reprobado'), 'Presentes', 'Ausentes')) %>% 
+  filter(turno != 'Nivelación',
+         propuesta_formativa_desc %in% carreras)
 
 # separate(col = `Alumno - Legajo`, into = c("alumno", "legajo"), sep = " - ")
 

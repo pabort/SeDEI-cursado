@@ -1,22 +1,30 @@
-ciclo <- c('Grado') #' , 'Licenciatura en Administración', 'Licenciatura en Economía'
+ciclo_sel <- c('Ciclo Profesional') #' , 'Licenciatura en Administración', 'Licenciatura en Economía'
 carreras <- c('Ciencias Económicas', 'Contador Público', 'Licenciatura en Administración', 'Licenciatura en Economía') # 
 turnos <- c('Febrero','Mayo','Julio','Septiembre', 'Noviembre', 'Nivelación')
 
-vars_names <-  c('tipo_propuesta_formativa_desc',
-                 'propuesta_formativa_desc',
-                 'anio_academico',
-                 'periodo_lectivo',
-                 'resultado',
-                 'cantidad_alumnos')
+# vars_names <-  c('tipo_propuesta_formativa_desc',
+#                  'propuesta_formativa_desc',
+#                  'anio_academico',
+#                  'periodo_lectivo',
+#                  'resultado',
+#                  'cantidad_alumnos')
 
-df_finales <- read_csv("data/data_finales_19_21_v2.csv") %>% 
-  setNames(vars_names) %>% 
-  mutate(turno = str_extract(periodo_lectivo, paste(turnos, collapse = '|')),
-         resultado = ifelse(resultado == 'VACIO/NULO', 'Ausente', resultado),
-         resultado2 = ifelse(resultado %in% c('Aprobado', 'Reprobado'), 'Presentes', 'Ausentes')) %>% 
-  filter(tipo_propuesta_formativa_desc %in% ciclo, turno != 'Nivelación',
+# df_finales <- read_csv("data/data_finales_19_21_v2.csv") %>% 
+#   setNames(vars_names) %>% 
+#   mutate(turno = str_extract(periodo_lectivo, paste(turnos, collapse = '|')),
+#          resultado = ifelse(resultado == 'VACIO/NULO', 'Ausente', resultado),
+#          resultado2 = ifelse(resultado %in% c('Aprobado', 'Reprobado'), 'Presentes', 'Ausentes')) %>% 
+#   filter(tipo_propuesta_formativa_desc %in% ciclo, turno != 'Nivelación',
+#          propuesta_formativa_desc %in% carreras)
+
+df_finales <- read_csv("data/data_finales_examen_materia.csv") %>% 
+  mutate(turno = str_extract(turno, paste(turnos, collapse = '|')),
+         resultado2 = resultado_desc,
+         cantidad_alumnos = q,
+         resultado =resultado_desc,
+         resultado2 = ifelse(resultado_desc %in% c('Aprobado', 'Reprobado'), 'Presentes', 'Ausentes')) %>% 
+  filter(ciclo == ciclo_sel, turno != 'Nivelación',
          propuesta_formativa_desc %in% carreras)
-
 
 # separate(col = `Alumno - Legajo`, into = c("alumno", "legajo"), sep = " - ")
 

@@ -68,5 +68,5 @@ for (i in periodos) {
   plot_lst_evol_act_carr[[i]] <- fig
 }
 
-plot_lst_evol_act_carr[['Ciclo Básico-11 - PRIMER SEMESTRE']]
-plot_lst_evol_act_carr[['Ciclo Profesional-11 - PRIMER SEMESTRE']]
+#plot_lst_evol_act_carr[['Ciclo Básico-11 - SEGUNDO SEMESTRE']]
+#plot_lst_evol_act_carr[['Ciclo Profesional-11 - PRIMER SEMESTRE']]
