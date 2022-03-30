@@ -86,17 +86,17 @@ En todos los casos se empleó como fuente los datos de Guaraní provistos por el
 
 ### Comentarios generales
 
-- En el primer semestre de cursado se observa una importante disminución de los y las estudiantes sin actuación académica (15,7%), respecto a los años 2019 y 2021 que se mantienen en niveles similares (23,8% y 24,6%).
+- En el primer semestre de cursado de 2020 se observa una importante disminución de los y las estudiantes sin actuación académica (15,8%) respecto a los años 2019 y 2021. En estos años, se mantienen en niveles similares (24,5% y 23,3%, respectivamente).
 
-- En cambio, en el segundo semestre, el porcentaje de estudiantes sin actuación se mantiene a lo largo de los tres años.
+- En cambio, en el segundo semestre, el porcentaje de estudiantes sin actuación se mantiene a lo largo de los tres años (entre 24% y 26%).
 
--  En el primer semestre del año 2020 el porcentaje de regulares aumentó en un poco más de 10 puntos porcentuales respecto al 2019, mientras que en 2021 se observa una importante disminución llegando a un 5% menos que en 2019. 
+-  En el primer semestre del año 2020 el porcentaje de regulares aumentó en un poco más de 10 puntos porcentuales respecto al 2019, mientras que en 2021 se observa una disminución de 2 puntos porentuales respecto a 2019. 
 
-- En cambio, en el segundo semestre de 2020 se mantiene el porcentaje de regulares respecto al 2019, y disminuye en 2021 respecto a ese periodo, en un 7%.
+- En cambio, en el segundo semestre de 2020 se mantiene el porcentaje de regulares respecto al 2019, y disminuye en 2021 respecto a ese periodo en un 7%.
 
 - En el turno de examen de julio-agosto 2020 se inscribieron más estudiantes respecto de 2019, sin embargo la proporción de presentes fue inferior casi cuatro puntos porcentuales. En el mismo turno del 2021, las cifras volvieron a los niveles de 2019, tanto en términos absolutos como relativos.
 
-- En los turnos de noviembre-diciembre la dinámica fue similar, excepto en 2021 en el que la proprorción de presentes disminuyó en aproximadamente diez puntos porcentuales, aun cuando la cantidad de inscriptos fue similar a la de 2019.
+- En los turnos de noviembre-diciembre la dinámica fue similar, excepto en 2021 en el que la proprorción de presentes disminuyó en aproximadamente nueve puntos porcentuales respecto a 2019, aun cuando la cantidad de inscriptos fue similar a la de ese año.
 
 ---
 class: inverse, center, middle
