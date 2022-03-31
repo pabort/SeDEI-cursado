@@ -1,6 +1,6 @@
 ---
 title: "Resultados académicos en los períodos 2019, 2020 y 2021"
-subtitle: "Carrera: Contador Público"
+subtitle: "Carrera: Lic. en Administración"
 author: "Secretaría de Desarrollo y Evaluación Institucional"
 institute: "Facultad de Ciencias Económicas (UNC)"
 date: "Marzo de 2022"
@@ -72,11 +72,11 @@ source("R/adecuacion_data_finales.R")
 
 - **A. Estadísticas de cursado por carrera**
 
-- **B. Estadísticas de cursada por ciclo**  (Contador Público)
+- **B. Estadísticas de cursada por ciclo**  (Lic. en Administración)
 
-- **C. Exámenes finales a nivel general** (Contador Público)
+- **C. Exámenes finales a nivel general** (Lic. en Administración)
 
-- **D. Exámenes finales por ciclo** (Contador Público)
+- **D. Exámenes finales por ciclo** (Lic. en Administración)
 <br>
 <br>
 <br>
@@ -260,10 +260,10 @@ plot_lst_reg_carr2[['2021-11 - SEGUNDO SEMESTRE']]
 class: inverse, center, middle
 
 # B. Estadísticas de cursada por ciclo
-# Contador Público
+# Lic. en Administración
 
 ```{r include=FALSE}
-source("R/1-plot_evol_actuacion_ciclo_CONTADOR.R")
+source("R/1-plot_evol_actuacion_ciclo_ADMINISTRACION.R")
 ```
 
 ---
@@ -329,7 +329,7 @@ plot_lst_evol_act_carr[['Ciclo Profesional-11 - SEGUNDO SEMESTRE']]
 ---
 
 ```{r include=FALSE}
-source("R/1-C_plot_regular_carrera_2_CONTADOR.R")
+source("R/1-C_plot_regular_carrera_2_ADMINISTRACION.R")
 ```
 
 ### B.2. Resultados de las materias cursadas por carrera
@@ -418,15 +418,15 @@ plot_lst_reg_carr2[['2021-11 - SEGUNDO SEMESTRE']]
 class: center, middle, inverse
 
 # C. Exámenes finales
-## [Contador Público]
+## [Lic. en Administración]
 ```{r include=FALSE}
-source("R/1-adecuacion_data_finales_CONTADOR.R")
+source("R/1-adecuacion_data_finales_ADMINISTRACION.R")
 ```
 
 ---
 
 ### C.1. Evolución de la cantidad de inscripciones por época
-#### **Contador Público** (Las cifras corresponden a años académicos)
+#### **Lic. en Administración** (Las cifras corresponden a años académicos)
 .panelset[
 .panel[.panel-name[Febrero-Marzo]
 <center>
@@ -479,7 +479,7 @@ plot_lst_evol_finales[['Noviembre']]
 ---
 
 ### C.2 Distribución entre aprobados y reprobados
-#### **Contador Público** (Las proporciones solo contemplan estudiantes presentes)
+#### **Lic. en Administración** (Las proporciones solo contemplan estudiantes presentes)
 .panelset[
 
 .panel[.panel-name[Febrero-Marzo]
@@ -531,9 +531,9 @@ plot_lst_finales_aprobados[['Noviembre']]
 class: center, middle, inverse
 
 # D. Exámenes finales por ciclo
-## [Contador Público]
+## [Lic. en Administración]
 ```{r include=FALSE}
-source("R/CONTADOR-C1-adecuacion_data_finales_basico.R")
+source("R/ADMINISTRACION-C1-adecuacion_data_finales_basico.R")
 ```
 
 ---
@@ -622,7 +622,7 @@ class: center, middle
 # D.2. Ciclo Profesional
 
 ```{r include=FALSE}
-source("R/CONTADOR-C1-adecuacion_data_finales_superior.R")
+source("R/ADMINISTRACION-C1-adecuacion_data_finales_superior.R")
 ```
 
 ---
