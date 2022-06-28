@@ -1,5 +1,5 @@
 ---
-title: "Resultados académicos en los períodos 2019, 2020 y 2021"
+title: "Resultados académicos en los períodos 2019-2021"
 subtitle: "Carrera: Lic. en Economía"
 author: "Secretaría de Desarrollo y Evaluación Institucional"
 institute: "Facultad de Ciencias Económicas (UNC)"
