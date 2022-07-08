@@ -29,8 +29,8 @@ m <- list(
   t = 20
 )
 
-filter_periodo <- paste0(c(2019:2021),
-                         c(rep("-11 - PRIMER SEMESTRE", 3), rep("-11 - SEGUNDO SEMESTRE", 3))
+filter_periodo <- paste0(c(2019:2022),
+                         c(rep("-11 - PRIMER SEMESTRE", 4), rep("-11 - SEGUNDO SEMESTRE", 4))
                          )
 
 plot_lst_reg_carr2 <- vector("list", length = length(filter_periodo))
@@ -70,4 +70,4 @@ for (i in filter_periodo) {
   
 }
 
-# plot_lst_reg_carr2[['2021-11 - SEGUNDO SEMESTRE']]
+# plot_lst_reg_carr2[['2022-11 - SEGUNDO SEMESTRE']]

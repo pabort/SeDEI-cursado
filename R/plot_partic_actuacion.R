@@ -67,6 +67,7 @@ for (i in periodos[periodos!="2019 NIVELACION"]) {
 # plot_lst[['2021 11 - SEGUNDO SEMESTRE']]
 # plot_lst[['2019 11 - CURSOS VERANO']]
 
+#plot_lst[['2022 11 - PRIMER SEMESTRE']]
 
 # ------------------------------------------------------------------------------
 # Plot para informe pdf
