@@ -19,6 +19,7 @@ table1 <- df_cursadas %>%
   mutate(time = paste(anio_academico, periodo_lectivo),
          prop_actuacion = cantidad/sum(cantidad)*100)
 
+
 # 
 periodos <- unique(table1$time)
 plot_lst <- vector("list", length = length(periodos) - 1)

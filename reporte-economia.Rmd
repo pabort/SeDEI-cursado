@@ -1,9 +1,9 @@
 ---
-title: "Resultados académicos en los períodos 2019-2021"
+title: "Resultados académicos. Período 2019-2022"
 subtitle: "Carrera: Lic. en Economía"
 author: "Secretaría de Desarrollo y Evaluación Institucional"
 institute: "Facultad de Ciencias Económicas (UNC)"
-date: "Marzo de 2022"
+date: "Julio de 2022"
 output:
   xaringan::moon_reader:
     css: xaringan-themer.css
@@ -212,6 +212,17 @@ plot_lst_reg_carr2[['2021-11 - PRIMER SEMESTRE']]
 
 ]
 
+.panel[.panel-name[2022]
+
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_reg_carr2[['2022-11 - PRIMER SEMESTRE']]
+
+```
+</center>
+
+]
+
 ]
 
 ---
@@ -364,6 +375,17 @@ plot_lst_reg_carr2[['2020-11 - PRIMER SEMESTRE']]
 <center>
 ```{r, fig.align='center', out.height="100%", out.width="100%"}
 plot_lst_reg_carr2[['2021-11 - PRIMER SEMESTRE']]
+
+```
+</center>
+
+]
+
+.panel[.panel-name[2022]
+
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_reg_carr2[['2022-11 - PRIMER SEMESTRE']]
 
 ```
 </center>

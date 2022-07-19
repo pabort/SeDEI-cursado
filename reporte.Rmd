@@ -1,9 +1,9 @@
 ---
-title: "Resultados académicos de estudiantes en los períodos 2019, 2020 y 2021"
-#subtitle: "Secretaría de Desarrollo y Evaluación Institucional"
+title: "Resultados académicos. Período 2019-2022"
+subtitle: "Facultad de Ciencias Económicas (UNC)"
 author: "Secretaría de Desarrollo y Evaluación Institucional"
-institute: "Facultad de Ciencias Económicas (UNC)"
-date: "Marzo de 2022"
+#institute: 
+date: "Julio de 2022"
 output:
   xaringan::moon_reader:
     css: xaringan-themer.css
@@ -987,7 +987,7 @@ plot_lst_evol_act_carr[['Ciclo Profesional-11 - SEGUNDO SEMESTRE']]
 source("R/C_plot_regular_carrera_2.R")
 ```
 
-### C.1.2. Resultados de las materias cursadas por carrera
+### C.1.2. Resultados de las materias cursadas por ciclo
 
 #### **Primer semestre**
 
@@ -1040,7 +1040,7 @@ plot_lst_reg_carr2[['2022-11 - PRIMER SEMESTRE']]
 
 ---
 
-### C.1.2. Resultados de las materias cursadas por carrera
+### C.1.2. Resultados de las materias cursadas por ciclo
 #### **Segundo semestre**
 
 .panelset[
