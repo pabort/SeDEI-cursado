@@ -70,4 +70,4 @@ for (i in filter_periodo) {
   
 }
 
-# plot_lst_reg_carr2[['2022-11 - SEGUNDO SEMESTRE']]
+# plot_lst_reg_carr2[['2022-11 - PRIMER SEMESTRE']]
