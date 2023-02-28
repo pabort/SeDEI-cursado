@@ -4,3 +4,4 @@ xaringanExtra::embed_xaringan(
   url = "https://pabort.github.io/SeDEI-cursado/reporte.html",
   ratio = "16:9"
 )
+

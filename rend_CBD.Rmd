@@ -1,0 +1,174 @@
+---
+title: "Redictado Ciclo Básico a Distancia"
+subtitle: 'Rendimiento académico 2019-2022'
+author: "Secretaría de Desarrollo y Evaluación Institucional"
+date: 'Febrero de 2023'
+output:
+  pdf_document:
+    keep_tex: true
+  word_document: default
+geometry: margin=1.0in
+font-size: 11pt
+header-includes:
+  - \usepackage{helvet}
+  - \renewcommand*\familydefault{\sfdefault}
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+knitr::opts_chunk$set(echo = TRUE)
+
+opts_chunk$set(
+  echo=FALSE,
+  message=FALSE,
+  warning=FALSE,
+  fig.align = 'center'
+  )
+
+library(plotly)
+library(tidyverse)
+library(glue)
+library(gt)
+
+
+# Ciclo básico a distancia
+df_cursadas <- read_csv("data/fce_tablero - cursado por materia_v3.csv")
+
+materias <- c("(11-00004) - MICROECONOMIA I 11 - PRIMER SEMESTRE",
+              "(11-00006) - CONTABILIDAD I 11 - PRIMER SEMESTRE",
+              "(11-00200) - INTRODUCCION A LAS CIENCIAS SOCIALES 11 - PRIMER SEMESTRE",
+              "(11-00201) - INTRODUCCION A LA ADMINISTRACION 11 - SEGUNDO SEMESTRE",
+              "(11-00202) - PRINCIPIOS DE ADMINISTRACION 11 - SEGUNDO SEMESTRE",
+              "(11-00245) - PRINCIPIOS Y ESTRUCTURA DE LA ECONOMIA 11 - SEGUNDO SEMESTRE",
+              "(11-00274) - MACROECONOMIA I 11 - SEGUNDO SEMESTRE",
+              "(11-00280) - MATEMATICA II 11 - PRIMER SEMESTRE",
+              "(11-00281) - MATEMATICA I 11 - SEGUNDO SEMESTRE",
+              "(11-00282) - DERECHO CONSTITUCIONAL Y ADMINISTRATIVO 11 - SEGUNDO SEMESTRE",
+              "(11-00283) - ESTADISTICA I 11 - SEGUNDO SEMESTRE")
+
+# Ciclo básico a distancia
+asignaturas <- df_cursadas %>% 
+  mutate(materia_redict = paste(actividad_desc, periodo_lectivo)) %>% 
+  filter(tipo_propuesta_formativa_desc == 'Ciclo Básico',
+         materia_redict %in% materias)
+
+# definir colores (Cba y resto del pais)
+pal_col <- c("#B50E1A", "#FED105")
+carreras <- c('Ciencias Económicas', 'Contador Público', 'Licenciatura en Administración', 'Licenciatura en Economía')
+
+f <- list(
+  size = 20,
+  family = 'sans-serif')
+
+table1 <- asignaturas %>% 
+  mutate(resultado_desc2 = if_else(resultado_desc == "Sin Actuación", "Sin actuación", "Con actuación")) %>% 
+  filter(propuesta_formativa_desc %in% carreras) %>% 
+  group_by(anio_academico, periodo_lectivo, resultado_desc2) %>% 
+  summarise(cantidad = sum(cantidad_alumnos)) %>% 
+  mutate(prop_actuacion = cantidad/sum(cantidad)*100,
+         value = glue('{cantidad} ({round(prop_actuacion, 1)} %)'),
+         categoria = case_when(periodo_lectivo == '11 - PRIMER SEMESTRE' & resultado_desc2  == 'Con actuación' ~  'S1_CA',
+                               periodo_lectivo == '11 - PRIMER SEMESTRE' & resultado_desc2  == 'Sin actuación' ~  'S1_SA',
+                               periodo_lectivo == '11 - SEGUNDO SEMESTRE' & resultado_desc2 == 'Con actuación' ~  'S2_CA',
+                               periodo_lectivo == '11 - SEGUNDO SEMESTRE' & resultado_desc2 == 'Sin actuación' ~  'S2_SA')) %>% 
+  ungroup() %>% 
+  select(anio_academico, categoria, value) %>% 
+  spread(categoria, value) %>% 
+  replace_na(list(S2_CA = '--', S2_SA = '--'))
+  
+
+est_act <- table1 %>% 
+  gt() %>% 
+  tab_spanner(label = 'Primer Semestre', columns = c(2:3)) %>% 
+  tab_spanner(label = 'Segundo Semestre', columns = c(4:5)) %>% 
+  cols_label(anio_academico = 'Año',
+             S1_CA = 'Con actuación',
+             S1_SA = 'Sin actuación',
+             S2_CA = 'Con actuación',
+             S2_SA = 'Sin actuación')
+
+
+
+# Estudiantes regulares
+
+table2 <- asignaturas %>% 
+  mutate(actuacion = if_else(resultado_desc == "Sin Actuación", "Sin actuación", "Con actuación")) %>% 
+  filter(actuacion == "Con actuación", propuesta_formativa_desc %in% carreras) %>% 
+  select(anio_academico, periodo_lectivo, resultado_desc, cantidad_alumnos) %>% 
+  group_by(anio_academico, periodo_lectivo, resultado_desc) %>% 
+  summarise(cantidad = sum(cantidad_alumnos)) %>% 
+  mutate(porcentaje = cantidad / sum(cantidad)*100) %>% 
+  #  mutate(time = paste(anio_academico)) %>% 
+  #  spread(resultado_desc, cantidad) %>% 
+  mutate(anio_academico = as.factor(anio_academico),
+         resultado_desc = factor(resultado_desc, levels = c('Regular', 'Libre'), labels = c('Regulares', 'Libres')),
+         value = glue('{cantidad} ({round(porcentaje, 1)} %)'),
+         categoria = case_when(periodo_lectivo == '11 - PRIMER SEMESTRE'  & resultado_desc  == 'Libres' ~  'S1_L',
+                               periodo_lectivo == '11 - PRIMER SEMESTRE'  & resultado_desc  == 'Regulares' ~  'S1_R',
+                               periodo_lectivo == '11 - SEGUNDO SEMESTRE' & resultado_desc == 'Libres' ~  'S2_L',
+                               periodo_lectivo == '11 - SEGUNDO SEMESTRE' & resultado_desc == 'Regulares' ~  'S2_R')) %>% 
+  ungroup() %>% 
+  select(anio_academico, categoria, value) %>% 
+  spread(categoria, value) %>% 
+  replace_na(list(S2_L = '--', S2_R = '--'))
+
+
+est_reg <- table2 %>% 
+  gt() %>% 
+  tab_spanner(label = 'Primer Semestre', columns = c(2:3)) %>% 
+  tab_spanner(label = 'Segundo Semestre', columns = c(4:5)) %>% 
+  cols_label(anio_academico = 'Año',
+             S1_L = 'Libres',
+             S1_R = 'Regulares',
+             S2_L = 'Libres',
+             S2_R = 'Regulares')
+```
+
+## Asignaturas incluidas
+
+### Primer semestre del Ciclo Básico
+
+- (11-00201) - INTRODUCCION A LA ADMINISTRACION 
+
+- (11-00281) - MATEMATICA I
+
+- (11-00245) - PRINCIPIOS Y ESTRUCTURA DE LA ECONOMIA
+
+
+### Segundo semestre del Ciclo Básico
+
+- (11-00006) - CONTABILIDAD I
+
+- (11-00200) - INTRODUCCION A LAS CIENCIAS SOCIALES
+
+- (11-00280) - MATEMATICA II
+
+- (11-00004) - MICROECONOMIA I
+
+
+### Tercer semestre del Ciclo Básico
+
+- (11-00202) - PRINCIPIOS DE ADMINISTRACION
+
+- (11-00274) - MACROECONOMIA I
+
+- (11-00282) - DERECHO CONSTITUCIONAL Y ADMINISTRATIVO
+
+- (11-00283) - ESTADISTICA I
+
+
+A continuación se presenta información sobre la actuación (y resultados) de los estudiantes en las asignaturas en el semestre contrario a su dictado normal.
+
+## Actuación sobre cantidad de inscripciones a cursar
+
+```{r condicion}
+est_act
+```
+
+## Resultados de los cursos realizados
+
+Se estima sobre la base de inscripciones con actuación
+
+```{r regularidad}
+est_reg
+```

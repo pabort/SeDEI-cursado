@@ -230,13 +230,15 @@ plot_lst[['2022 11 - PRIMER SEMESTRE']]
 
 .pull-right[
 
-<!-- <center> -->
-<!-- Segundo semestre -->
+<center>
 
-<!-- ```{r, fig.align='center', out.height="100%", out.width="100%"} -->
-<!-- plot_lst[['2021 11 - SEGUNDO SEMESTRE']] -->
-<!-- ``` -->
-<!-- </center> -->
+Segundo semestre
+
+```{r, fig.align='center', out.height="85%", out.width="85%"}
+plot_lst[['2022 11 - SEGUNDO SEMESTRE']]
+```
+</center>
+
 ]
 ]
 ]
@@ -556,6 +558,17 @@ plot_lst_reg_carr2[['2020-11 - SEGUNDO SEMESTRE']]
 <center>
 ```{r, fig.align='center', out.height="100%", out.width="100%"}
 plot_lst_reg_carr2[['2021-11 - SEGUNDO SEMESTRE']]
+
+```
+</center>
+
+]
+
+.panel[.panel-name[2022]
+
+<center>
+```{r, fig.align='center', out.height="100%", out.width="100%"}
+plot_lst_reg_carr2[['2022-11 - SEGUNDO SEMESTRE']]
 
 ```
 </center>
