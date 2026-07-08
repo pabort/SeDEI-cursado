@@ -1,0 +1,401 @@
+---
+title: "Encuesta a estudiantes de Cursado en Formato Combinado (CFC)"
+subtitle: "Primer semestre 2026 | Facultad de Ciencias Económicas"
+date: "Julio de 2026"
+lang: es
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    toc-title: "Contenido"
+    embed-resources: true      # un solo archivo .html, compartible
+    code-fold: true            # código plegado, auditable
+    code-summary: "Ver código"
+    fig-width: 8
+    fig-height: 5
+  docx:
+    toc: true
+    fig-width: 7
+    fig-height: 4.5
+    # reference-doc: plantilla_fce.docx   # descomentar si tienen plantilla Word institucional
+execute:
+  echo: false        # en HTML queda plegado; para el Word final conviene cambiar a false
+  warning: false
+  message: false
+---
+
+```{r setup}
+library(tidyverse)
+library(knitr)
+
+# Corre todo el procesamiento: genera `base`, `larga`, `tabla_multi()`,
+# `items_likert`, `niveles_likert`, etc.
+source("procesamiento_cfc.R", encoding = "UTF-8")
+
+theme_set(theme_minimal(base_size = 12) +
+          theme(panel.grid.minor = element_blank(),
+                plot.title.position = "plot"))
+
+# Paleta para Likert (divergente) y helper de porcentaje
+pal_likert <- c("Muy en desacuerdo" = "#b2182b", "En desacuerdo" = "#ef8a62",
+                "Indiferente" = "#d9d9d9", "De acuerdo" = "#67a9cf",
+                "Muy de acuerdo" = "#2166ac")
+pct <- function(x, d = 1) paste0(format(round(x, d), decimal.mark = ","), "%")
+
+options(OutDec = ",")
+
+```
+
+# Ficha técnica
+
+```{r ficha}
+periodo <- range(as.Date(base$marca_temporal))
+n_total <- nrow(base)
+```
+
+- La encuesta fue autoadministrada mediante formulario en _on line_ y respondida por
+**`r n_total` estudiantes** de divisiones CFC, entre el `r format(periodo[1], "%d/%m/%Y")` y el `r format(periodo[2], "%d/%m/%Y")`. 
+
+Decisiones/criterios de procesamiento:
+
+- **Respuestas múltiples:** los porcentajes se calculan sobre quienes respondieron cada
+  pregunta (columna `base` en las tablas), no sobre el total de marcas; las sumas pueden
+  superar 100%.
+- **Grilla preguntas sobre aulas virtuales:** la configuración elegida permitía seleccionar más de una alternativa;
+  `r sum(base$likert_multimarca, na.rm = TRUE)` casos registraron más de una marca en
+  algún ítem. Tomamos un criterio conservador para tratar estos casos: si las marcas van en la misma dirección se conserva la menos extrema; si son contradictorias (acuerdo y
+  desacuerdo simultáneos) se anula la respuesta de ese ítem.
+- **Inconsistencias:** `r sum(base$inconsistencia_ncfc, na.rm = TRUE)` casos declararon
+  más materias CFC que materias totales; se excluyen solo para el cálculo de la proporción de  materias CFC en las que cursan.
+
+# Perfil de quienes respondieron
+
+En promedio, el estudiantado cursaron 3 materias en el semestre. El siguiente gráfico representa la distribución general de la cantidad de materias cursadas.
+```{r perfil-materias}
+#| fig-height: 3.5
+base |>
+  count(n_materias) |>
+  ggplot(aes(factor(n_materias), n)) +
+  geom_col(fill = "#4c72b0") +
+  geom_text(aes(label = n), vjust = -0.5, size = 3.5) +
+  labs(title = "Cantidad de materias cursadas este semestre",
+       x = "Cant. Materias", y = "Cant. estudiantes") +
+  ylim(0,240)
+```
+
+La siguiente tabla muestra a qué ciclo pertenecen las materias cursadas por los estudiantes durante este semestre:
+
+```{r perfil-ciclo}
+base |>
+  count(ciclo) |>
+  mutate(pct = pct(100 * n / sum(n))) |>
+  kable(alig="lcc", col.names = c("Ciclo", "Cant. estudiantes", "%"),
+        caption = "Ciclo de las materias cursadas")
+```
+
+Como se observa en la siguiente tabla, el estudiantado cursa en promedio 2 materias CFC, lo que representa en promedio 68,1\% de la totalidad de materias cursadas. Asimismo, 31,9\% declaró que cursa materias exclusivamente de CFC.
+
+```{r perfil-propcfc}
+base |>
+  filter(!inconsistencia_ncfc) |>
+  summarise(`Materias CFC (promedio)` = round(mean(n_cfc, na.rm = TRUE), 2),
+            `Materias CFC (mediana)` = median(n_cfc, na.rm = TRUE),
+            `Proporción CFC (media)` = pct(100 * mean(prop_cfc, na.rm = TRUE)),
+            `Cursan 100% en CFC` = pct(100 * mean(prop_cfc == 1, na.rm = TRUE))) |>
+  kable(align = "c", caption = "Peso del CFC en la inscripción (excluye inconsistencias)")
+```
+
+Estos indicadores son relativamente mayores en el caso de estudiantes que realizan materias (solo) del ciclo profesional o de ambos ciclos, con una mayor porcentaje (promedio) de materias CFC y un mayor porcentaje que cursan la totalidad de materias de CFC.
+
+```{r perfil-propcfc-ciclo}
+base |>
+  filter(!inconsistencia_ncfc) |>
+  group_by(ciclo) |>
+  summarise(`Cant. estudiantes` = n(),
+            `Materias CFC (promedio)` = round(mean(n_cfc, na.rm = TRUE), 2),
+            `Materias CFC (mediana)` = median(n_cfc, na.rm = TRUE),
+            `Proporción CFC (media)` = pct(100 * mean(prop_cfc, na.rm = TRUE)),
+            `Cursan 100% en CFC` = pct(100 * mean(prop_cfc == 1, na.rm = TRUE))) |>
+  rename(`Ciclo` = ciclo) |>
+  kable(align = "lccccc", caption = "Peso del CFC en la inscripción según ciclo (excluye inconsistencias)")
+```
+
+# La elección del CFC
+
+El 72,9\% de estudiantes encuestados tuvo _experiercia previa_ cursando materias de CFC, mientras que para el 27,1\% restante fue su _primera experiencia_.
+
+```{r grupos}
+base |>
+  count(grupo_cfc) |>
+  mutate(pct = pct(100 * n / sum(n))) |>
+  kable(align="lcc", col.names = c("Experiencia en CFC", "Cant. estudiantes", "%"),
+        caption = "Primera experiencia vs. experiencia previa en CFC")
+```
+
+En la siguiente tabla se muestran los motivos de la elección por el CFC, armonizando las opciones entre ambos grupos para poder mostrar el resultado agregado (solo las opciones que se señalan como _"primera vez"_ no tenían un equivalente para la pregunta dirigida a estudiantes que tuvieron experiencia previa en CFC).
+
+El principal motivo señalado por los/as estudiantes para la elección del CFC es la _Organización de horarios y tiempos de estudio_, seguido por la _Compatibilidad con trabajo u otras responsabilidades_.
+
+```{r motivos}
+#| fig-height: 4.5
+tab_mot <- tabla_multi(larga, "Motivo de elección CFC")
+kable(tab_mot |> select(etiqueta, n, base, pct),
+      align = "lccc",
+      col.names = c("Motivo", "Cant. estudiantes", "n", "%"),
+      caption = "Motivos de elección del CFC (respuesta múltiple)")
+
+tab_mot |>
+  ggplot(aes(pct, fct_reorder(etiqueta, pct))) +
+  geom_col(fill = "#4c72b0") +
+  geom_text(aes(label = pct(pct)), hjust = -0.1, size = 3.3) +
+  scale_x_continuous(limits = c(0, 76)) +
+  labs(title = "Motivos de elección del CFC",
+       subtitle = "% sobre quienes podían marcar cada opción",
+       x = "%", y = NULL)
+```
+
+
+Cuando se considera solo al grupo que participa por primera vez en el CFC, el principal motivo resulta ser _Preferencia por combinar/alternar presencial y virtual_ (alternativa que ocupa el tercer lugar en estudiantes con experciencia previa, con bastante diferencia respecto a las dos principales).
+
+```{r}
+tabla_multi(larga, "Motivo de elección CFC", por = "grupo_cfc") |>
+  select(grupo_cfc, etiqueta, pct) |>
+  pivot_wider(names_from = grupo_cfc, values_from = pct) |>
+  arrange(desc(`Experiencia previa`)) |>
+  mutate(across(-etiqueta, ~ if_else(is.na(.x), "—", pct(.x)))) |>
+  rename(`Motivo` = etiqueta) |>
+  kable(align = "lcc",
+        #col.names = c("Motivo", "Primera experiencia", "Experiencia previa"),
+        caption = "Motivos de elección según experiencia en CFC (% sobre cada grupo)")
+```
+
+Cuando se analiza por el ciclo de las materias que cursan los/as estudiantes, en todos los casos el principal motivo de la elección por el CFC es _Organización de horarios y tiempos de estudio_, aunque cobra mucho más relevancia en estudiantes que cursan materias del Ciclo profesional o ambos ciclos en simultáneo (81\% y 79\%, respectivamente). En estos dos casos, sigue en relevancia como motivo la _Compatibilidad con trabajo u otras responsabilidades_  (72\% y 73\%, respectivamente), aspecto que no representa el 50\% en quienes cursan solo materias del Ciclo básico.
+
+```{r}
+tabla_multi(larga, "Motivo de elección CFC", por = "ciclo") |>
+  select(ciclo, etiqueta, pct) |>
+  pivot_wider(names_from = ciclo, values_from = pct) |>
+  arrange(desc(`Ciclo básico`)) |>
+  mutate(across(-etiqueta, ~ if_else(is.na(.x), "—", pct(.x)))) |>
+  rename(`Motivo` = etiqueta) |>
+  kable(align = "lccc",
+        caption = "Motivos de elección según ciclo de las materias que cursa")
+```
+
+
+# Modalidad de asistencia a clases
+
+En forma de asistencia a clases de los/as estudiantes hay un _predominio virtual_ que alcanza el 54,4\% (36,8\% _mayoritariamente virtual_ y 17,6\% _solo virtual_), mientras que un cuarto del estudiantado relevado asiste en igual proporción de manera presencial y virtual (_equilibrado_). 
+
+Por su parte, solo 6 de los 517 encuestados/as (1.2\%) manifestaron no asistir a clases de nunguna manera. Entre los motivos de inasistencia predominan las dificultades de traslado o distancia (4 menciones) y la preferencia por el estudio autónomo (3), seguidas por la incompatibilidad horaria (2) y el trabajo (1). En cuanto al acceso a los contenidos, los seis utilizan el aula virtual como recurso principal, complementado en la mayoría de los casos por las clases grabadas (5) y por bibliografía o apuntes de compañeros/as. 
+
+```{r asistencia}
+#| fig-height: 3.8
+base |>
+  count(asistencia) |>
+  mutate(pct = 100 * n / sum(n)) |>
+  ggplot(aes(pct, fct_rev(asistencia))) +
+  geom_col(fill = "#4c72b0") +
+  geom_text(aes(label = paste0(n, " (", pct(pct), ")")), hjust = -0.05, size = 3.3) +
+  scale_x_continuous(limits = c(0, 45)) +
+  labs(title = "¿Cómo asistís generalmente a las clases CFC?",
+       x = "%", y = NULL)
+```
+
+Se observa un mayor predominio de asistencia virtual (mayoritariamente virtual o sólo virtual) en estudiantes que cursan materias del ciclo profesional o de ambos ciclos (67\% y 65\%, respectivamente). Por su parte, hay una mayor porporción de estudiantes que solo cursan materias del ciclo básico que asisten a clases predominantemente de manera presencial (sólo o mayoritariamente presencial); y si añadimos a quienes asisten a clases de manera equilibrada (en igual proporción en ambas modalidades), se supera el 56\% de estudiantes que asisten en alguna medida de forma presencial.
+
+```{r asistencia-cruces}
+base |>
+  count(ciclo, asistencia_3) |>
+  group_by(ciclo) |>
+  mutate(pct = pct(100 * n / sum(n))) |>
+  select(-n) |>
+  pivot_wider(names_from = asistencia_3, values_from = c(pct)) |>
+  rename(`Ciclo` = ciclo) |>
+  kable(caption = "Modalidad de asistencia según ciclo",
+        align = "lccc")
+
+```
+
+En cuanto los estudiantes que manifestaron cursar haber elegido materias del CFC con anterioridad, el 63\% lo hace de manera predominantemente virtual, mientras que el solo 35\% que se inscribieron por primera vez en materias del CFC asisten de esta forma.
+
+```{r}
+base |>
+  count(grupo_cfc, asistencia_3) |>
+  group_by(grupo_cfc) |>
+  mutate(pct = pct(100 * n / sum(n))) |>
+  select(-n) |>
+  pivot_wider(names_from = asistencia_3, values_from = pct) |>
+  rename(`Grupo` = grupo_cfc) |>
+  kable(caption = "Modalidad de asistencia según experiencia previa (%)",
+        align = "lccc")
+```
+
+
+# Beneficios y dificultades percibidas
+
+El principal beneficio de asistir presencilmente a clases señalados por el estudiantado es el _Contacto más directo con docentes_ (54.7\%), seguido por el poder _Dialogar entre compañeros/as_ (42.9\%). Por su parte, en relación a los beneficios precibidos de la virtualidad, destaca el poder _Conectarse desde distintos lugares/dispositivos_ (72.5\%) y/o hacerlo _a tiempo/en horario_ (63.4\%). Más de la mitad de los/as estudiantes señalan que la virtualidad les permites asistir (dadas su obligaciones de trabajo, cuidado, distancia) y casi la mitad que les permite _hacer más actividades al mismo tiempo_.
+
+
+```{r benef-dific}
+#| fig-height: 6
+bind_rows(tabla_multi(larga, "Beneficios presencial")   |> mutate(dim = "Beneficios presencial"),
+          tabla_multi(larga, "Beneficios virtual")      |> mutate(dim = "Beneficios virtual")) |>
+  ggplot(aes(pct, tidytext::reorder_within(etiqueta, pct, dim))) +
+  geom_col(fill = "#4c72b0") +
+  geom_text(aes(label = pct(pct)), hjust = -0.1, size = 3.1) +
+  tidytext::scale_y_reordered() +
+  scale_x_continuous(expand = expansion(mult = c(0, 0.14))) +
+  facet_wrap(~dim, scales = "free_y", ncol = 1) +
+  labs(title = "Beneficios percibidos de cada modalidad",
+       subtitle = "% sobre respondentes", x = "%", y = NULL)
+```
+
+Por otro lado, la principal dificultad de la presencialidad refiere a los _Tiempos de traslados largos y/o costosos_. La mayor dificultad percibida de la virtualidad se vincula a que resulta _más difícil interactua con docentes/pares_, seguido por los _problemas de conexión a Internet_, la sensación de _menos integración a la vida universitaria_ y la dificultad de _concentrase desde su csa u otro lugar_.
+
+```{r dificultades}
+#| fig-height: 6
+bind_rows(tabla_multi(larga, "Dificultades presencial") |> mutate(dim = "Dificultades presencial"),
+          tabla_multi(larga, "Dificultades virtual")    |> mutate(dim = "Dificultades virtual")) |>
+  ggplot(aes(pct, tidytext::reorder_within(etiqueta, pct, dim))) +
+  geom_col(fill = "#c44e52") +
+  geom_text(aes(label = pct(pct)), hjust = -0.1, size = 3.1) +
+  tidytext::scale_y_reordered() +
+  scale_x_continuous(expand = expansion(mult = c(0, 0.14))) +
+  facet_wrap(~dim, scales = "free_y", ncol = 1) +
+  labs(title = "Dificultades percibidas de cada modalidad",
+       subtitle = "% sobre respondentes", x = "%", y = NULL)
+```
+
+Si se analizan los grupos de estudiantes con experiencia previa o no en CFC, no se observan diferencias sustanciales en la percepción de las dificultades, aunque los probleas de conexión a Internet tiene una mayor incedencia en quienes tiene experciencia previa en el CFC respectos a los que no (24.7\% versus 18.6\%).
+
+```{r dific-por-grupo}
+tabla_multi(larga, "Dificultades virtual", por = "grupo_cfc") |>
+  select(grupo_cfc, etiqueta, pct) |>
+  pivot_wider(names_from = grupo_cfc, values_from = pct) |>
+  rename(`Dificultad` = etiqueta) |>
+  kable(caption = "Dificultades del cursado virtual según experiencia en CFC (%)")
+```
+
+# Percepción de las aulas virtuales
+
+En general se observa una percepción positiva de las aulas virtuales: los seis ítems evaluados superan los 4 puntos sobre 5. Los aspectos mejor valorados son los técnicos y de acceso a la plataforma (la facilidad de uso y navegación y la posibilidad de acceder desde cualquier dispositivo), mientras que el menor nivel de acuerdo se registra en los espacios de comunicación y en la facilidad para encontrar materiales y actividades. Como se desprende de los comentarios abiertos, estos dos ítems remiten menos a limitaciones de la plataforma que a las prácticas de uso por parte de las cátedras (la falta de respuesta en foros y mensajes, y la heterogeneidad en la organización de las aulas entre materias).
+
+```{r likert}
+#| fig-height: 4.5
+nombres_items <- c(av_facil_uso = "Fáciles de usar y navegar",
+                   av_interfaz = "Interfaz simple y amigable",
+                   av_materiales = "Encuentro fácilmente materiales y actividades",
+                   av_dispositivos = "Acceso desde cualquier dispositivo",
+                   av_comunicacion = "Espacios de comunicación adecuados",
+                   av_formatos = "Materiales en diferentes formatos")
+
+# Color del texto según el fondo del segmento (blanco sobre oscuro)
+pal_texto <- c("Muy en desacuerdo" = "white", "En desacuerdo" = "black",
+               "Indiferente" = "black", "De acuerdo" = "black",
+               "Muy de acuerdo" = "white")
+
+lik <- base |>
+  select(all_of(items_likert)) |>
+  pivot_longer(everything(), names_to = "item", values_to = "resp") |>
+  filter(!is.na(resp)) |>
+  count(item, resp) |>
+  group_by(item) |>
+  mutate(pct = 100 * n / sum(n),
+         item = nombres_items[item]) |>
+  ungroup()
+
+orden_items <- lik |>
+  filter(resp %in% c("De acuerdo", "Muy de acuerdo")) |>
+  group_by(item) |> summarise(acuerdo = sum(pct)) |> arrange(acuerdo) |> pull(item)
+
+lik |>
+  mutate(item = factor(item, levels = orden_items),
+         resp = factor(resp, levels = niveles_likert)) |>
+  ggplot(aes(pct, item, fill = resp)) +
+  geom_col(position = position_stack(reverse = TRUE)) +
+  geom_text(aes(label = if_else(pct >= 3, pct(pct, 0), NA), color = resp),
+            position = position_stack(vjust = 0.5, reverse = TRUE),
+            size = 3, show.legend = FALSE, na.rm = TRUE) +
+  scale_fill_manual(values = pal_likert, name = NULL) +
+  scale_color_manual(values = pal_texto, guide = "none") +
+  guides(fill = guide_legend(nrow = 2, byrow = TRUE)) +
+  labs(title = "En relación con las aulas virtuales de la facultad, se caracterizan por...",
+       #subtitle = "Ordenado por nivel de acuerdo. Se rotulan los segmentos ≥ 4%",
+       x = "%", y = NULL) +
+  theme(legend.position = "bottom")
+```
+
+En general no hay diferencias en estas valoraciones sobre cada uno de los ítems valorados de las aulas virtuales en los grupos de estudiantes según su experiencia en CFC ni la forma de asitencia a clases. No obstante, se ve cierta diferencia en las valoraciones asociadas, presumiblemente al mayor nivel o intensidad de eso de las aulas virtuales: hay un mayor acuerdo promedio de los ítemas analizados por parte de estudiantes con experciencia previa en CFC y quiene asisten predominantemente a clases de forma virtual.
+
+
+```{r indice-av-grupo}
+base |>
+  group_by(grupo_cfc) |>
+  summarise(across(ends_with("_num"), ~ round(mean(.x, na.rm = TRUE), 2))) |>
+  rename_with(~ nombres_items[str_remove(.x, "_num")], ends_with("_num")) |>
+  rename(`Grupo CFC` = grupo_cfc) |>
+  kable(caption = "Media de cada ítem de aulas virtuales según experiencia en CFC",
+        align = "lcccccc")
+```
+
+```{r indice-av-asistencia3}
+base |>
+  group_by(asistencia_3) |>
+  summarise(across(ends_with("_num"), ~ round(mean(.x, na.rm = TRUE), 2))) |>
+  rename_with(~ nombres_items[str_remove(.x, "_num")], ends_with("_num")) |>
+  rename(`Asistencia` =  asistencia_3) |>
+  kable(caption = "Media de cada ítem de aulas virtuales forma de asistencia a clases",
+        align = "lcccccc")
+```
+
+
+# Intención de continuar en CFC
+
+```{r volveria}
+base |>
+  count(volveria_cfc) |>
+  mutate(pct = pct(100 * n / sum(n))) |>
+  kable(col.names = c("¿Volverías a cursar en CFC?", "n", "%"))
+
+base |>
+  count(grupo_cfc, volveria_cfc) |>
+  group_by(grupo_cfc) |>
+  mutate(pct = pct(100 * n / sum(n))) |>
+  select(-n) |>
+  pivot_wider(names_from = volveria_cfc, values_from = pct, values_fill = "0%") |>
+  kable(caption = "Intención de continuar según experiencia previa (%)")
+```
+
+```{r no-volveria}
+#| results: asis
+neg <- base |> filter(!is.na(motivo_no_volveria)) |> pull(motivo_no_volveria)
+cat("Motivos de quienes no volverían a cursar en CFC (", length(neg), "casos):\n\n")
+cat(paste0("- ", neg, collapse = "\n"))
+```
+
+
+# Anexo: respuestas "Otro" (texto libre)
+
+```{r anexo-otros}
+#| results: asis
+otros <- list("Motivos de elección CFC" = base$mot_otro_texto,
+              "Beneficios clases presenciales" = base$bp_otro,
+              "Beneficios clases virtuales" = base$bv_otro,
+              "Dificultades clases presenciales" = base$dp_otro,
+              "Dificultades clases virtuales" = base$dv_otro)
+for (nm in names(otros)) {
+  txt <- otros[[nm]][!is.na(otros[[nm]])]
+  cat("\n\n**", nm, "** (", length(txt), " respuestas):\n\n", sep = "")
+  cat(paste0("- ", txt, collapse = "\n"))
+}
+```
+
+**Comentarios sobre los desacuerdos sobre Aulas virtuales**
+
+```{r comentarios-av}
+#| results: asis
+coment <- base |> filter(!is.na(av_comentario)) |> pull(av_comentario)
+cat("Se registraron", length(coment), "comentarios. Listado completo para análisis cualitativo:\n\n")
+cat(paste0("- ", coment, collapse = "\n"))
+```
